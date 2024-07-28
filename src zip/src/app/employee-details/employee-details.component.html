@@ -1,0 +1,104 @@
+<div  >
+    <h1>Employee Details</h1>
+    <form #employeeForm="ngForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="name">Name</label>
+        <input id="name" name="name" [(ngModel)]="employee.name" #name="ngModel" required />
+        <div *ngIf="name.invalid && name.touched">
+          Name is required
+        </div>
+      </div>
+      <br>
+      <div>
+        <label for="fatherName">Father's Name</label>
+        <input id="fatherName" name="fatherName" [(ngModel)]="employee.fatherName" #fatherName="ngModel" required />
+        <div *ngIf="fatherName.invalid && fatherName.touched">
+          Father's Name is required
+        </div>
+      </div>
+      <br>
+      <div>
+        <label for="dob">Date of Birth</label>
+        <input id="dob" name="dob" type="date" [(ngModel)]="employee.dob" #dob="ngModel" required />
+        <div *ngIf="dob.invalid && dob.touched">
+          Date of Birth is required
+        </div>
+      </div>
+      <br>
+      <div>
+        <label for="mobile">Mobile Number</label>
+        <input id="mobile" name="mobile" [(ngModel)]="employee.mobile" #mobile="ngModel" required />
+        <div *ngIf="mobile.invalid && mobile.touched">
+          Mobile Number is required
+        </div>
+      </div>
+      <br>
+      <div>
+        <label for="email">Email ID</label>
+        <input id="email" name="email" type="email" [(ngModel)]="employee.email" #email="ngModel" required email />
+        <div *ngIf="email.invalid && email.touched">
+          Valid Email is required
+        </div>
+      </div>
+      <br>
+      <div>
+        <label for="age">Age</label>
+        <input id="age" name="age" type="number" min="20" max="65" [(ngModel)]="employee.age" #age="ngModel" required />
+        <div *ngIf="age.invalid && age.touched">
+          Age between 20 and 65 is required
+        </div>
+      </div>
+      <br>
+      <div>
+        <label>Gender</label>
+        <label>
+          <input type="radio" name="gender" [(ngModel)]="employee.gender" value="male" required /> Male
+        </label>
+        <label>
+          <input type="radio" name="gender" [(ngModel)]="employee.gender" value="female" required /> Female
+        </label>
+        <div *ngIf="employee.gender === undefined && employeeForm.submitted">
+          Gender is required
+        </div>
+      </div>
+      <br>
+      <div>
+        <label for="department">Department</label>
+        <select id="department" name="department" [(ngModel)]="employee.department" required>
+          <option value="" disabled>Select your department</option>
+          <option *ngFor="let dept of departments" [value]="dept">{{ dept }}</option>
+        </select>
+        <div *ngIf="employee.department === undefined && submitted">
+          Department is required
+        </div>
+      </div>
+      
+      <br>
+      <button type="submit" [disabled]="employeeForm.invalid">Save</button>
+    </form>
+    <br>
+    <div *ngIf="submitted">
+      Enter a Color to appear your details:<input type="text" [(ngModel)]="colour">
+      <div [ngStyle]="{'color': colour}">
+        <p [ngClass]="'violet'">Welcome {{employee.name}} your details is successfully saved!,your details are</p>
+        <br>
+        {{employee.name}}
+        <br>
+        {{employee.fatherName}}
+        <br>
+        {{employee.dob|date}}
+        <br>
+        {{employee.age}}
+        <br>
+        {{employee.department}}
+        <br>
+        {{employee.gender}}
+        <br>
+        {{employee.email}}
+        <br>
+        {{employee.mobile}}
+        <br>
+      </div>
+    </div>
+  </div>
+  

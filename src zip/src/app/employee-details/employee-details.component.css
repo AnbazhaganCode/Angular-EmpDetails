@@ -1,0 +1,11 @@
+.violet {
+    color: blueviolet;
+    background-color: black;
+    font-weight: bold;
+}
+.container {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically if needed */
+    height: 100vh; /* Optional: Makes the container full height of the viewport */
+  }
